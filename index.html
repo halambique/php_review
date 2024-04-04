@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="nb">
+<!-- Meta information-->
+<head>
+    <!-- Default Meta information -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- removes all 'default' formatting on the page -->
+    <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <!-- Link to your own stylesheet -->
+    <link rel="stylesheet" type="text/css" href="style/index.css">
+    <!-- Website Title -->
+    <title>NotCanvas</title>
+    <!-- Website Icon -->
+    <link rel="icon" href="#">
+</head>
+
+<!-- Everything shown on the page-->
+<body>
+<!-- Header -->
+<header>
+
+</header>
+
+<!-- Main -->
+<main>
+<div id="logo"><img src="notcanvas.png"></div>
+    <div id="student">
+        <h2>Student</h2>
+        <ul>
+            <li><a href="./html/registerStudent.html">Registrer som Student</a></li>
+            <li><a href="./html/loginStudent.html">Log in som Student</a></li>
+        </ul>
+    </div>
+
+    <div id="lecturer">
+        <h2>Foreleser</h2>
+        <ul>
+            <li><a href="./html/registerLecuturer.html">Registrer som Foreleser</a></li>
+            <li><a href="./html/loginLecturer.html">Log in som foreleser</a></li>
+        </ul>
+    </div>
+
+
+    <div id="pinForm">
+        <form action="/api/index.php" method="post">
+            <label for="subjectPIN">Har du allerede PIN-kode? Skriv den her!:</label>
+            <input type="number" id="subjectPIN" name="subjectPIN">
+        </form>
+    </div>
+
+</main>
+
+<!-- Footer -->
+<footer>
+<p><a href="/api/api-dokumentasjon">Her finner du API-dokumentasjon</a></p>
+</footer>
+</body>
+</html>

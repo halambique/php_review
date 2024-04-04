@@ -1,0 +1,293 @@
+imgUpload.php Overview
+
+This PHP script handles the upload of an image file. It requires a connection to the database.
+Session handling is implemented to retrieve the user ID.
+
+If the user ID is found in the session, the script proceeds to handle the image upload. Otherwise, it outputs a message indicating that the user ID is not found in the session.
+
+The script uploads the image file to a specified directory and updates the database with the file name associated with the user ID.
+
+Parameters
+
+- `lecturerImage` (required): The image file to be uploaded.
+
+Example
+
+No example provided.
+
+Response
+
+Upon successful upload:
+    - The file [file name] has been uploaded.
+    - Redirects to lecturerDashboard.php.
+
+Upon failure:
+    - Something went wrong!.
+
+===
+
+lecturerForgotPassword.php Overview
+
+This PHP script handles the functionality for a lecturer to request a password reset. It requires a connection to the database and utilizes PHPMailer for sending emails.
+A new password is generated and stored as a temporary password in the database.
+
+Parameters
+
+- `Email` (required): The email address of the lecturer requesting the password reset.
+
+Response
+
+Upon successful submission:
+- A new password is generated and sent to the lecturer's email address.
+- A success message is displayed, indicating that the email with the new password has been sent.
+
+Upon failure:
+- Invalid email format: If the provided email address is not in a valid format.
+- Email address does not exist: If the provided email address does not exist in the database.
+- Error sending email: If there is an issue sending the email, an error message is displayed along with the specific error information from PHPMailer.
+
+===
+
+loginLecturer.php Overview
+
+This PHP script handles the login functionality for lecturers. It starts a session and requires a connection to the database.
+
+If the request method is POST, the script retrieves the email, password, and RememberMe flag from the form submission.
+
+It checks if a temporary password exists for the lecturer within the last 15 minutes. If so, it logs in the lecturer by removing the temporary password and setting a remember token if RememberMe is selected.
+
+If no temporary password exists or it has expired, the script checks the provided email and password combination against the database. If the combination is correct, the lecturer is logged in and a remember token is set if RememberMe is selected.
+
+Parameters
+
+- `Email` (required): The email address of the lecturer.
+- `Password` (required): The password of the lecturer.
+- `RememberMe` (optional): Flag indicating whether to remember the login session.
+
+Response
+
+Upon successful login:
+- A success message is displayed, indicating that the lecturer is logged in.
+- If RememberMe is selected, a remember token is set for the lecturer's session.
+- The lecturer is redirected to the lecturerDashboard.php page.
+
+Upon failure:
+- Error messages are displayed if there are issues with the login process or incorrect credentials are provided.
+
+===
+
+loginStudent.php Overview
+
+This PHP script handles the functionality for a student to log in. It requires a connection to the database.
+Session handling is implemented for user authentication.
+
+Upon receiving a POST request, the script checks whether a temporary password exists and is within the validity period. If so, it logs in the user with the temporary password. Otherwise, it checks the permanent password for authentication.
+
+Parameters
+
+- `Email` (required): The email address of the student attempting to log in.
+- `Password` (required): The password provided by the student.
+- `RememberMe` (optional): Indicates whether the user wants to be remembered for future logins.
+
+Response
+
+Upon successful login:
+- A success message is displayed, indicating that the user is logged in.
+- If the "Remember Me" option is selected, a remember token is generated and stored as a cookie.
+- The user's session is initialized with their user ID and account type.
+- The user is redirected to the student dashboard.
+
+Upon failure:
+- Invalid email format: If the provided email address is not in a valid format.
+- Incorrect password or email: If the provided credentials do not match any user in the database.
+- Error during login: If there is an issue during the login process, an error message is displayed.
+
+===
+
+registerLecturer.php Overview
+
+This PHP script handles the functionality for registering a new lecturer. It requires a connection to the database.
+Upon receiving a POST request, the script processes the form data, including file upload for lecturer images.
+
+After successfully uploading the image file, the script performs database operations to insert the lecturer's information, create a new subject, and associate the lecturer with the subject.
+
+Parameters
+
+- `FirstName` (required): The first name of the lecturer.
+- `LastName` (required): The last name of the lecturer.
+- `Email` (required): The email address of the lecturer.
+- `Password` (required): The password of the lecturer.
+- `SubjectCode` (required): The code of the subject taught by the lecturer.
+- `SubjectName` (required): The name of the subject taught by the lecturer.
+- `SubjectPIN` (required): The PIN (Personal Identification Number) associated with the subject.
+- `lecturerImage` (required): The image file of the lecturer.
+
+Response
+
+Upon successful registration:
+- A success message is displayed, indicating that the file has been uploaded and the data has been added to the database.
+- The user is redirected to the lecturer login page.
+
+Upon failure:
+- Error uploading file: If there is an error during file upload.
+- Database error: If there is an error during database operations, the specific error message is displayed.
+
+===
+
+registerMessage.php Overview
+
+This PHP script handles the functionality for registering a new message. It requires a connection to the database.
+Upon receiving a POST request, the script processes the incoming data, which can be in JSON format or form-urlencoded format.
+
+Parameters
+
+- `comment` (required): The content of the message.
+- `subject_pin` (required): The PIN (Personal Identification Number) associated with the subject.
+
+Response
+
+Upon successful registration:
+- A success message is displayed, indicating that the data has been added to the database.
+
+Upon failure:
+- Database error: If there is an error during database operations, the specific error message is displayed.
+- Unsupported content type: If the content type of the request is not supported, an error message is displayed.
+
+===
+
+registerStudent.php Overview
+
+This PHP script handles the functionality for registering a new student. It requires a connection to the database.
+Upon receiving a POST request, the script processes the incoming data, which can be in JSON format or form-urlencoded format.
+
+Parameters
+
+- `FirstName` (required): The first name of the student.
+- `LastName` (required): The last name of the student.
+- `Email` (required): The email address of the student.
+- `StudyProgram` (required): The study program of the student.
+- `Class` (required): The class of the student.
+- `Password` (required): The password of the student.
+
+Response
+
+Upon successful registration:
+- The user is redirected to the index.html page.
+
+Upon failure:
+- Database error: If there is an error during database operations, the specific error message is displayed.
+- Unsupported content type: If the content type of the request is not supported, an error message is displayed.
+
+===
+
+registerSubject.php Overview
+
+This PHP script handles the functionality for registering a new subject. It requires a connection to the database.
+Upon receiving a POST request, the script processes the incoming data, which can be in JSON format or form-urlencoded format.
+
+Parameters
+
+- `SubjectCode` (required): The code of the subject.
+- `SubjectName` (required): The name of the subject.
+- `SubjectPIN` (required): The PIN (Personal Identification Number) associated with the subject.
+
+Response
+
+Upon successful registration:
+- Success messages are displayed indicating that the data has been added to the database.
+- The user is redirected to the lecturer dashboard page.
+
+Upon failure:
+- Database error: If there is an error during database operations, the specific error message is displayed.
+- Unsupported content type: If the content type of the request is not supported, an error message is displayed.
+
+===
+
+reportMessage.php Overview
+
+This PHP script handles the functionality for reporting a message. It can accept both JSON data and form data.
+If JSON data is received, it checks for the presence of a "message_id" field and updates the corresponding message in the database.
+If form data is received, it updates the message based on the provided "message_id".
+The script sanitizes input to prevent SQL injection attacks.
+
+Parameters
+
+- `message_id` (required): The ID of the message to be reported.
+
+Response
+
+Upon successful reporting:
+- If JSON data is received, a success message is returned as JSON.
+- If form data is received, the user is redirected to the relevant page.
+
+Upon failure:
+- If JSON data is received and the required field is missing or if there is an error during database operations, an error message is returned as JSON.
+- If form data is received and there is an error during database operations or if no message ID is received, an error message is displayed.
+
+===
+
+sendMessage.php Overview
+
+This PHP script handles the functionality for sending messages. It requires a connection to the database.
+Upon receiving a POST request, the script checks if both the message content and the subject PIN are provided.
+If both are provided, it inserts the message into the database, associating it with the logged-in student.
+If either the message content or the subject PIN is missing, or if the user is not a student, it redirects back to the previous page.
+
+Parameters
+
+- `comment` (required): The content of the message.
+- `subject_pin` (required): The PIN (Personal Identification Number) associated with the subject.
+
+Response
+
+Upon successful submission:
+- The user is redirected to the page displaying the subject with the provided PIN.
+
+Upon failure:
+- If either the message content or the subject PIN is missing, or if the user is not a student, the user is redirected back to the previous page.
+
+===
+
+sendReply.php Overview
+
+This PHP script handles the functionality for sending replies to messages. It requires a connection to the database.
+Upon receiving a POST request, the script checks if the reply text, message ID, account type, and subject PIN are provided.
+If all required parameters are provided and the user is not a student, it inserts the reply into the database.
+If any of the required parameters are missing or the user is a student, it redirects back to the previous page.
+
+Parameters
+
+- `reply` (required): The content of the reply.
+- `message_id` (required): The ID of the message to which the reply belongs.
+- `subject_pin` (required): The PIN (Personal Identification Number) associated with the subject.
+
+Response
+
+Upon successful submission:
+- The user is redirected to the page displaying the subject with the provided PIN.
+
+Upon failure:
+- If any of the required parameters are missing or the user is a student, the user is redirected back to the previous page.
+
+===
+
+studentForgotPassword.php Overview
+
+This PHP script handles the functionality for resetting a student's password. It requires a connection to the database.
+Upon receiving a POST request, the script validates the email format and checks if the provided email exists in the database.
+If the email exists, it generates a new password, updates the database with the new password, and sends an email to the user with the new password.
+The email contains instructions for the user to change their password after logging in.
+
+Parameters
+
+- `Email` (required): The email address of the student requesting a password reset.
+
+Response
+
+Upon successful password reset:
+- The user receives an email with the new password and instructions for changing it.
+- A success message is displayed to inform the user that the email has been sent.
+
+Upon failure:
+- If the email format is invalid or does not exist in the database, an appropriate error message is displayed.
+- If there are any issues sending the email, a message indicating the failure is shown.

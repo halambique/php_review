@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style/registerStudent.css">
+    <title>Login</title>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <h2>Logg inn som foreleser</h2>
+        <form id="register" action="../api/loginLecturer.php" method="post">
+
+            <label for="Email">E-post:</label>
+            <input type="email" id="Email" name="Email" required>
+
+            <label for="Password">Passord:</label>
+            <input type="password" id="Password" name="Password" required>
+
+            <label for="RememberMe">Husk meg</label>
+            <input id="RememberMe" type="checkbox" name="RememberMe">
+            
+
+            <input id= "submit" type="submit" value="Login">
+        </form>
+        <a href ="lecturerForgotPassword.html" class="button" >Glemt Passord</a>
+    </main>
+</body>
+</html>
